@@ -6,23 +6,23 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 
 @Database(
-    entities = [Articulo::class],
-    version = 1,
+    entities = [Articulo::class, Producto::class],
+    version = 2,
     exportSchema = false
 )
-
 abstract class AppDatabase : RoomDatabase() {
 
-    abstract fun articuloDao():ArticuloDao
+    abstract fun articuloDao(): ArticuloDao
+    abstract fun productoDao(): ProductoDao
 
     companion object {
 
         @Volatile
-        private var INSTANCE:AppDatabase? = null
+        private var INSTANCE: AppDatabase? = null
 
         fun getInstance(
             context: Context
-        ):AppDatabase {
+        ): AppDatabase {
 
             return INSTANCE ?: synchronized(this) {
 
